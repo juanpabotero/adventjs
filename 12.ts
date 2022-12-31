@@ -1,20 +1,26 @@
-export default function getMinJump(obstacles) {
-  // ¡No olvides compartir tu solución en redes!
-  return true
+export default function getMinJump(obstacles: number[]) {
+  obstacles.sort((a, b) => a - b);
+  let minJump;
+  let isIncluded = false;
+  for (let i = 1; i <= obstacles[obstacles.length - 1]; i++) {
+    isIncluded = false;
+    for (let j = i; j <= obstacles[obstacles.length - 1]; j = j + i) {
+      if(obstacles.includes(j)) {
+        isIncluded = true;
+        break;
+      }
+    }
+    if (isIncluded) {
+      continue
+    } else {
+      minJump = i > minJump ? minJump : i 
+    }
+  }
+  return minJump;
 }
 
-// const obstacles = [5, 3, 6, 7, 9]
-// getMinJump(obstacles) // -> 4
-
-// S es salto, X es obstáculo
-/* Así quedaría la representación:
-0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-.  .  .  X  .  X  X  X  .  X  . 
-S-----------S-----------S-------
-*/
-
-// const obstacles = [2, 4, 6, 8, 10]
-// getMinJump(obstacles) // -> 7
+const obstacles = [14, 10, 8, 2, 3, 6];
+console.log(getMinJump(obstacles)); // -> 7
 
 /* Así quedaría la representación:
 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
