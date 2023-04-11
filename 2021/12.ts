@@ -19,7 +19,7 @@ export default function getMinJump(obstacles: number[]) {
   return minJump;
 }
 
-const obstacles = [14, 10, 8, 2, 3, 6];
+const obstacles = [2, 4, 6, 8, 10];
 console.log(getMinJump(obstacles)); // -> 7
 
 /* Así quedaría la representación:
